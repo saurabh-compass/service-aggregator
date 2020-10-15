@@ -31,13 +31,19 @@ app.post('/aggregator', function(req, res) {
                 headers : apiInfo[entityRequest["entity"]].headers,
                 keyName : entityRequest["keyName"]
             }
-            request(options, function (error, response, body) {
-                result[requestQuery['entities'][requestCount]["keyName"]] = JSON.parse(body);
-                requestCount++;
-                if(requestCount == requestQuery['entities'].length) {
-                    res.json(result);
+            var requestFunction = (function () {
+                var queryIndex = index;
+                return function () {
+                    request(options, function (error, response, body) {
+                        result[requestQuery['entities'][queryIndex]["keyName"]] = JSON.parse(body);
+                        requestCount++;
+                        if(requestCount == requestQuery['entities'].length) {
+                            res.json(result);
+                        }
+                      })
                 }
-              })
+              })();
+            requestFunction()
         }
     })
  })
