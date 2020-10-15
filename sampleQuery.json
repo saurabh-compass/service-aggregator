@@ -1,0 +1,47 @@
+{
+"example1": {
+    "entities":[
+        {
+            "entity":"board",
+            "keyName":"boardsResponse",
+            "pathParam":"5f18309565f0aa00015ae939",
+            "filters":{
+            },
+            "pagination": {},
+            "join" : {
+                "entity":"contact",
+                "keyName":"contacts",
+                "getParams": {
+                    "json" : {
+                        "userId":"5f15359bc9c8200001a2739b"
+                    }
+                },
+                "on" : {"contact.id":"person.id"}
+            }
+        }
+    ]
+}
+,
+
+"example2": {
+    "entities":[
+        {
+            "entity":"board",
+            "keyName":"boardsResponse",
+            "pathParam":"5f18309565f0aa00015ae939",
+            "filters":{
+            },
+            "pagination": {}
+        },
+        {
+            "entity":"contact",
+            "keyName":"contactsResponse",
+            "getParams": {
+                "json" : {
+                    "userId":"5f15359bc9c8200001a2739b"
+                }
+            }
+        }
+    ]
+}
+}
