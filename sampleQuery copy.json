@@ -6,7 +6,11 @@
     	{
     	"queryName" : "boardsQuery2",
     	"apiQuery":"select * from board as boardsResponse join contacts as contactResponse on board.`board.permissions.profile._id`=contacts.`person.personId` where board.pathParam=\"5f18309565f0aa00015ae939\" "
-    	}
+		},
+		{
+			"queryName" : "dealsQuery",
+			"apiQuery":"select * from deals as dealsResponse join contacts as contactResponse on deals.`deals.collaborators.data.source.person.personId`=contacts.`person.personId` where deals.getParams=\"json={\\\"dealIds\\\":[\\\"87860\\\"],\\\"enrichOptions\\\":[4,5,7]}\" "
+			}
     	],
     "commonHeaders" : {
     	"Authorization" : "Bearer WyI1ZjE1MzU5YmM5YzgyMDAwMDFhMjczOWIiLCI0NDliZGI0NWE4MWE3MmMwY2IxNGZlNDk0OGY4ZjA0NiJd.Eh-feA.UnGNAYDL5cfVsY_ITRglzSWv1ek",

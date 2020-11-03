@@ -12,6 +12,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', function(req, res){
     res.send("Hello world!");
  });
+
+ app.get('/apiConfig', function(req, res){
+    res.json(apiInfo);
+ });
+
+ app.post("/apiConfig", function(req, res) {
+    var dataConfig = '';
+    req.on("data", function(chunk) {
+        dataConfig+=chunk;
+    })
+    req.on("end", function() {
+        apiInfo = JSON.parse(dataConfig);
+        res.send("Api Config Updated");
+    })
+ })
+
 app.post('/aggregator', function(req, res) {
      var data = '';
     req.on("data", function(chunk) {
@@ -58,13 +74,14 @@ app.post('/aggregator', function(req, res) {
    })
    req.on("end", function() {
        var requestQueries = JSON.parse(data);
-       var context = {queriesProcessed:0,indexToEntityNameToDataMap:{}, response:res, indexToWhereMap:{},indexToAliasNameToDataMap:{},totalQueries:requestQueries['queries'].length}
+       var context = {queriesProcessed:0,indexToEntityNameToDataMap:{}, response:res, indexToWhereMap:{},indexToAliasNameToDataMap:{},totalQueries:requestQueries['queries'].length,requestQueries:requestQueries}
        console.log(requestQueries);
        for(var index = 0;index<requestQueries['queries'].length;index++) {
-            var ast = parser.astify(requestQueries['queries'][index]);
+            var ast = parser.astify(requestQueries['queries'][index].apiQuery);
             context.indexToEntityNameToDataMap[index] = {}
-            context.indexToAliasNameToDataMap[index] = {}
+            context.indexToAliasNameToDataMap[requestQueries.queries[index].queryName] = {}
             context.indexToWhereMap[index] = {}
+            if(ast.where)
             parseWhereClause(ast.where, context.indexToWhereMap[index])
             console.log(JSON.stringify(ast));
             resolveEntities(ast,context,0,index)
@@ -96,11 +113,13 @@ function resolveEntities(ast,context,currentFromIndex,currentQueryIndex) {
         parseOnClause(ast.from[currentFromIndex].on, onMap);
         for(var tableName in onMap) {
             for(var columnPath in onMap[tableName]) {
-                var collectedData = {}
+                var collectedData = []
                 collectDataForPath(context.indexToEntityNameToDataMap[currentQueryIndex][tableName], columnPath.split("."), 0, collectedData)
                 var createdReqData = {}
                 var joinParams = apiInfo[entityName].joinParams[onMap[tableName][columnPath]]
-                createJSONPath(collectedData,joinParams["getParams"] || joinParams["postParams"],0,createdReqData)
+                console.log("collectedData:", collectedData);
+                var joinRightPath = joinParams["getParams"] || joinParams["postParams"];
+                createJSONPath(collectedData,joinRightPath.split("."),0,createdReqData)
                 if(joinParams["getParams"]) {
                     joinGetParams = mergeJSON.merge(joinGetParams,createdReqData);
                 } else {
@@ -123,24 +142,33 @@ function resolveEntities(ast,context,currentFromIndex,currentQueryIndex) {
     postParams = mergeJSON.merge(postParams, apiInfo[entityName]["defaultPostParams"] || {})
     postParams = mergeJSON.merge(postParams, joinPostParams || {})
 
+    var parsedGetParams = ""
+    for(var getKey in getParams) {
+        parsedGetParams += getKey + "=" +escape(JSON.stringify(getParams[getKey])) + "&"
+    }
+    if(parsedGetParams) {
+        url += "?"+parsedGetParams;
+    }
+    var headers = mergeJSON.merge(apiInfo[entityName].headers || {}, whereMap?(whereMap["headers"]  || {}):{});
+    headers = mergeJSON.merge(headers,context.requestQueries.commonHeaders || {});
     var options = {
         uri : url,
         method : apiInfo[entityName].method,
-        headers : mergeJSON.merge(apiInfo[entityName].headers || {}, whereMap?(whereMap["headers"]  || {}):{}),
+        headers : headers,
         keyName : ast.from[currentFromIndex].as,
-        qs: getParams,
+        //qs: parsedGetParams,
         json: true,
         body: postParams
     }
     var requestFunction = (function () {
         var keyName = options.keyName,localCurrentQueryIndex = currentQueryIndex;
         var localContext = context, localAst = ast, localCurrentFromIndex = currentFromIndex, localEntityName = entityName;
-        console.log(options);
+        console.log("options",JSON.stringify(options));
         return function () {
             request(options, function (error, response, body) {
                 var result = (body.constructor==({}).constructor)?body:JSON.parse(body);
                 localContext.indexToEntityNameToDataMap[localCurrentQueryIndex][localEntityName] = result;
-                localContext.indexToAliasNameToDataMap[localCurrentQueryIndex][keyName] = result;
+                localContext.indexToAliasNameToDataMap[localContext.requestQueries.queries[localCurrentQueryIndex].queryName][keyName] = result;
                 if(error) {
                     resolveEntities(localAst,localContext,localAst.from.length,localCurrentQueryIndex)
                 } else {
@@ -172,8 +200,8 @@ function createJSONPath(dataToFill,jsonPath,currentIndex,output) {
             createJSONPath(dataToFill[index],jsonPath,currentIndex+1,output)
         }
     } else {
-        output[sonPath[currentIndex]] = {};
-        createJSONPath(dataToFill,jsonPath,currentIndex+1,output)
+        output[jsonPath[currentIndex]] = {};
+        createJSONPath(dataToFill,jsonPath,currentIndex+1,output[jsonPath[currentIndex]])
     }
 }
 
@@ -190,10 +218,12 @@ function collectDataForPath(jsonData, pathToCollect, currentIndex, output) {
         return;
     }
     if(jsonData[pathToCollect[currentIndex]] instanceof Array) {
-        for(var index=0;index<jsonData[pathToCollect[currentIndex]].length;index++)
-            collectDataForPath(jsonData[pathToCollect[currentIndex]][index], pathToCollect, currentIndex++, output)
+        var itrLen = (jsonData[pathToCollect[currentIndex]]).length;
+        for(var index=0;index<itrLen;index++) {
+            collectDataForPath(jsonData[pathToCollect[currentIndex]][index], pathToCollect, currentIndex+1, output)
+        }
     } else {
-        collectDataForPath(jsonData[pathToCollect[currentIndex]], pathToCollect, currentIndex++, output)
+        collectDataForPath(jsonData[pathToCollect[currentIndex]], pathToCollect, currentIndex+1, output)
     }
 }
 
