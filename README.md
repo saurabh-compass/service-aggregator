@@ -8,7 +8,7 @@ Sirius Node is a generic service aggregator written in nodejs. It is supposed to
  - A System that sits on top of microservices like a plug and play without much setup hassle or having to change existing services. GraphQL is a great idea implemented with difficult adaptability and proven latent system.
 
 ### GOALS
- - Create an easy to use aggregator of services with feature of data
+ - Create an easy to use aggregator of services with feature of data manipulation in nosql
  - Avoid multiple deployments for each minor change in response
  - Reach as many people from the developers community as possible (frontend/backend/full stack)
 ### Setup
