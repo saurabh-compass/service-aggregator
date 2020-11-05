@@ -15,7 +15,8 @@ Sirius Node is a generic service aggregator written in nodejs. It is supposed to
 
 
  ### Features:
-  - Do multiple rest calls in parallel and get response in a single network request to Sirius Node.
-  - Chain rest calls if there is dependency of data between two api calls
+  - Get results of multiple rest calls in a single network request to Sirius Node.
+  - Sirius can execute requests in parallel or you can Chain rest calls if there is dependency of data between two api calls
   - Multiple joined queries can be executed in parallel
-  - Modify and map data using underlying integrated nosql engine
+  - Modify and map data using underlying integrated nosql engine with data queries
+  - Execute a series of queries which either query api or manipulate data in context to create a workflow

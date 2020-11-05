@@ -1,25 +1,19 @@
 {
     "contacts": {
         "url":"http://staging-mobile-api.compass.com/api/v3/contacts/",
-        "headers" : {
-            "Authorization" : "Bearer WyI1ZjE1MzU5YmM5YzgyMDAwMDFhMjczOWIiLCI0NDliZGI0NWE4MWE3MmMwY2IxNGZlNDk0OGY4ZjA0NiJd.Eh-feA.UnGNAYDL5cfVsY_ITRglzSWv1ek",
-            "content-type" : "application/json"
-        },
         "joinParams" : {
             "person.personId": {"getParams" : "json.filter.personIDs[]"}
         },
-        "method":"GET"
+        "method":"GET",
+        "defaultGetParams" : {},
+        "defaultPostParams" : {},
+        "headers":{}
     },
     "board" : {
         "url" : "http://staging-mobile-api.compass.com/api/v3/boards/{pathParam}",
-        "headers" : {
-            "Authorization" : "Bearer WyI1ZjE1MzU5YmM5YzgyMDAwMDFhMjczOWIiLCI0NDliZGI0NWE4MWE3MmMwY2IxNGZlNDk0OGY4ZjA0NiJd.Eh-feA.UnGNAYDL5cfVsY_ITRglzSWv1ek",
-            "content-type" : "application/json"
-        },
-        "method":"GET"
-    },
-    "deals" : {
-        "url" : "http://staging-mobile-api.compass.com/api/v3/deals/",
-        "method":"GET"
+        "method":"GET",
+        "defaultGetParams" : {},
+        "defaultPostParams" : {},
+        "headers":{}
     }
 }

@@ -77,7 +77,7 @@ app.post('/aggregator', function(req, res) {
        var context = {queriesProcessed:0,indexToEntityNameToDataMap:{}, response:res, indexToWhereMap:{},indexToAliasNameToDataMap:{},totalQueries:requestQueries['queries'].length,requestQueries:requestQueries}
        console.log(requestQueries);
        for(var index = 0;index<requestQueries['queries'].length;index++) {
-            var ast = parser.astify(requestQueries['queries'][index].apiQuery);
+            var ast = parser.astify(formatQuery(requestQueries['queries'][index].apiQuery));
             context.indexToEntityNameToDataMap[index] = {}
             context.indexToAliasNameToDataMap[requestQueries.queries[index].queryName] = {}
             context.indexToWhereMap[index] = {}
@@ -88,6 +88,12 @@ app.post('/aggregator', function(req, res) {
        }
    })
 })
+
+function formatQuery(queryString) {
+    if(!queryString.match(/^ *select *\*/gmi))
+        return "select * " + queryString;
+    return queryString;
+}
 
 function resolveEntities(ast,context,currentFromIndex,currentQueryIndex) {
     if(currentFromIndex >= ast.from.length) {
@@ -111,6 +117,7 @@ function resolveEntities(ast,context,currentFromIndex,currentQueryIndex) {
     if(ast.from[currentFromIndex].on) {
         onMap = {}
         parseOnClause(ast.from[currentFromIndex].on, onMap);
+        console.log("onMap", onMap)
         for(var tableName in onMap) {
             for(var columnPath in onMap[tableName]) {
                 var collectedData = []
