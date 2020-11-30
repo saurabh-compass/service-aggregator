@@ -1,0 +1,398 @@
+{
+            "board": {
+                "id": "5f18309565f0aa00015ae939",
+                "name": "Collection-For-Bala",
+                "isArchived": false,
+                "numComments": 0,
+                "numOpenHouses": 0,
+                "numTours": 0,
+                "numListings": 2,
+                "owner": {
+                    "_id": "5f15359bc9c8200001a2739b",
+                    "firstName": "Balasaheb",
+                    "lastName": "Dabhade",
+                    "displayName": "Balasaheb Dabhade",
+                    "email": "balasaheb.dabhade@compass.com",
+                    "phone": "",
+                    "profileTypes": [
+                        0,
+                        1
+                    ]
+                },
+                "permissions": [
+                    {
+                        "profile": {
+                            "_id": "524f65ec85699321d5b36e88",
+                            "firstName": "test",
+                            "lastName": "test test",
+                            "displayName": "test test test",
+                            "email": "test@gmail.com",
+                            "phone": "",
+                            "profileTypes": [
+                                2,
+                                0
+                            ]
+                        },
+                        "createdAt": 1597331351523,
+                        "createdByUserId": "5f15359bc9c8200001a2739b"
+                    },
+                    {
+                        "profile": {
+                            "_id": "5f11874638e94600016127d5",
+                            "firstName": "Balasaheb",
+                            "lastName": "Dabhade",
+                            "displayName": "Balasaheb Dabhade",
+                            "email": "dabhade.balasaheb@gmail.com",
+                            "phone": "",
+                            "profileTypes": [
+                                2,
+                                0
+                            ]
+                        },
+                        "createdAt": 1595420913316,
+                        "createdByUserId": "5f15359bc9c8200001a2739b"
+                    },
+                    {
+                        "profile": {
+                            "_id": "5f15359bc9c8200001a2739b",
+                            "firstName": "Balasaheb",
+                            "lastName": "Dabhade",
+                            "displayName": "Balasaheb Dabhade",
+                            "email": "balasaheb.dabhade@compass.com",
+                            "phone": "",
+                            "profileTypes": [
+                                0,
+                                1
+                            ]
+                        },
+                        "createdAt": 1595420821904,
+                        "createdByUserId": "5f15359bc9c8200001a2739b"
+                    }
+                ],
+                "createdAt": 1595420821904,
+                "updatedAt": 1597331351523,
+                "listingAddedAt": 1595421202298,
+                "isJoined": true,
+                "hasUnreadComments": false,
+                "numUnarchivedListings": 2,
+                "isPublic": false,
+                "description": "",
+                "shareableImageUrl": "https://images.contentful.com/6sk7vkz0ctu5/2Pi7WRpKjSoW0G88EcKQoC/0d605f1caff977bbca5e669fb369bbca/CollectionsSocialPreview_v4.jpg",
+                "numListingsPerReviewStage": {
+                    "0": 2,
+                    "1": 0,
+                    "2": 0,
+                    "3": 0
+                },
+                "addSavedSearchResults": true
+            },
+            "content": {
+                "listings": [
+                    {
+                        "listingIdSHA": "318609708121934993",
+                        "listing": {
+                            "listingIdSHA": "318609708121934993",
+                            "feedListingId": "318609708121934993",
+                            "listingType": 2,
+                            "propertyRecordType": 2,
+                            "sourceFilters": [
+                                3
+                            ],
+                            "location": {
+                                "agentAddress": "14337 Fredericksburg Tpke",
+                                "prettyAddress": "14337 Fredericksburg Turnpike",
+                                "streetNumber": "14337",
+                                "street": "Fredericksburg",
+                                "streetType": "Tpke",
+                                "subNeighborhoods": [
+                                    "Caroline County"
+                                ],
+                                "city": "Woodford",
+                                "state": "VA",
+                                "zipCode": "22580",
+                                "longitude": -77.3538653,
+                                "latitude": 38.0646651,
+                                "geoId": "richmond_va",
+                                "timezone": "America/New_York"
+                            },
+                            "size": {
+                                "bedrooms": 3,
+                                "fullBathrooms": 3,
+                                "totalBathrooms": 3,
+                                "bathrooms": 3,
+                                "squareFeet": 1637,
+                                "lotSizeInSquareFeet": 31363,
+                                "formattedLotSize": "0.72 AC / 31,363 SF"
+                            },
+                            "status": 14,
+                            "localizedStatus": "Coming Soon",
+                            "price": {
+                                "lastKnown": 224000,
+                                "charges": [
+                                    {
+                                        "chargeAmount": 1449,
+                                        "chargeType": 0
+                                    }
+                                ],
+                                "perSquareFoot": 136.83567501527185,
+                                "monthlySalesCharges": 0,
+                                "monthlySalesChargesInclTaxes": 120,
+                                "formatted": "$224,000"
+                            },
+                            "date": {
+                                "updated": 1565377009000
+                            },
+                            "buildingInfo": {
+                                "buildingIdSHA": "b8c59ea0a9f64d38906c1bc99095f19941159716",
+                                "buildingAddress": "14337 Fredericksburg Tpke",
+                                "buildingYearOpened": 1966
+                            },
+                            "detailedInfo": {
+                                "propertyType": {
+                                    "masterType": {
+                                        "GLOBAL": [
+                                            "Single Family"
+                                        ],
+                                        "LOCAL_1": [
+                                            "Residential"
+                                        ],
+                                        "LOCAL_2": [
+                                            "Fee Simple"
+                                        ]
+                                    }
+                                },
+                                "totalParkingSpaces": 0
+                            },
+                            "media": [
+                                {
+                                    "category": 0,
+                                    "thumbnailUrl": "https://d2787ndpv5cwhz.cloudfront.net/f600fb31d0af1f1d3c6241e96d45c3c0cb7fc699/165x165.jpg",
+                                    "originalUrl": "https://d2787ndpv5cwhz.cloudfront.net/b90c21bac60082ef47d6c31232d10094a202c992_original.jpg",
+                                    "width": 1440,
+                                    "height": 902
+                                }
+                            ],
+                            "dealInfo": {
+                                "transactionType": 1,
+                                "courtesyOf": "Listing Courtesy of Century 21 Redwood Realty, Michelle Dietz; Century 21 Redwood Realty, Alexandra Allen"
+                            },
+                            "isConsumerSearchable": false,
+                            "isOffMLS": false,
+                            "userListingCompliance": {
+                                "descriptionCompliance": 0,
+                                "listingFooterComplianceImage": "complianceCVRMLS"
+                            },
+                            "externalId": "VACV120728",
+                            "badges": {
+                                "cornerBadges": [
+                                    {
+                                        "badgeType": 2,
+                                        "displayText": "Coming Soon"
+                                    }
+                                ]
+                            },
+                            "databaseSource": {
+                                "externalSourceName": "bright",
+                                "sourceDisplayName": "BRIGHT",
+                                "contributingDatasetList": [
+                                    "bright"
+                                ]
+                            },
+                            "pageLink": "/listing/14337-fredericksburg-turnpike-woodford-va-22580/318609708121934993/",
+                            "navigationPageLink": "/listing/14337-fredericksburg-turnpike-woodford-va-22580/318609708121934993/",
+                            "canonicalPageLink": "/listing/14337-fredericksburg-turnpike-woodford-va-22580/318609708121934993/",
+                            "editable": true
+                        },
+                        "isArchived": false,
+                        "hasUnreadComments": false,
+                        "numComments": 0,
+                        "numCommentsUnread": 0,
+                        "addedBy": {
+                            "_id": "5f15359bc9c8200001a2739b",
+                            "firstName": "Balasaheb",
+                            "lastName": "Dabhade",
+                            "displayName": "Balasaheb Dabhade",
+                            "email": "balasaheb.dabhade@compass.com",
+                            "phone": "",
+                            "profileTypes": [
+                                0,
+                                1
+                            ]
+                        },
+                        "updatedBy": {
+                            "_id": "5f15359bc9c8200001a2739b",
+                            "firstName": "Balasaheb",
+                            "lastName": "Dabhade",
+                            "displayName": "Balasaheb Dabhade",
+                            "email": "balasaheb.dabhade@compass.com",
+                            "phone": "",
+                            "profileTypes": [
+                                0,
+                                1
+                            ]
+                        },
+                        "createdAt": 1595421202298,
+                        "updatedAt": 1595421202298,
+                        "boardId": "5f18309565f0aa00015ae939",
+                        "reviewStage": 0,
+                        "wantToSee": false
+                    },
+                    {
+                        "listingIdSHA": "318609716317875425",
+                        "listing": {
+                            "listingIdSHA": "318609716317875425",
+                            "feedListingId": "318609716317875425",
+                            "listingType": 2,
+                            "propertyRecordType": 2,
+                            "sourceFilters": [
+                                3
+                            ],
+                            "location": {
+                                "agentAddress": "6723 Averett Ct",
+                                "prettyAddress": "6723 Averett Court",
+                                "streetNumber": "6723",
+                                "street": "Averett",
+                                "streetType": "Ct",
+                                "subNeighborhoods": [
+                                    "Spotsylvania County",
+                                    "The Glen"
+                                ],
+                                "city": "Fredericksburg",
+                                "state": "VA",
+                                "zipCode": "22407",
+                                "longitude": -77.5687705,
+                                "latitude": 38.27323860000001,
+                                "geoId": "richmond_va",
+                                "timezone": "America/New_York"
+                            },
+                            "size": {
+                                "bedrooms": 3,
+                                "fullBathrooms": 3,
+                                "halfBathrooms": 1,
+                                "totalBathrooms": 4,
+                                "bathrooms": 3.5,
+                                "squareFeet": 2236,
+                                "lotSizeInSquareFeet": 7405,
+                                "formattedLotSize": "0.17 AC / 7,405 SF"
+                            },
+                            "status": 14,
+                            "localizedStatus": "Coming Soon",
+                            "price": {
+                                "lastKnown": 349000,
+                                "charges": [
+                                    {
+                                        "chargeAmount": 2299,
+                                        "chargeType": 0
+                                    },
+                                    {
+                                        "chargeAmount": 65,
+                                        "chargeType": 2
+                                    }
+                                ],
+                                "perSquareFoot": 156.08228980322005,
+                                "monthlySalesCharges": 65,
+                                "monthlySalesChargesInclTaxes": 256,
+                                "formatted": "$349,000"
+                            },
+                            "date": {
+                                "updated": 1565293893000
+                            },
+                            "buildingInfo": {
+                                "buildingIdSHA": "5a9a2b47e3cc292e09b608c18cae8ade628338fe",
+                                "buildingAddress": "6723 Averett Ct",
+                                "buildingYearOpened": 2005
+                            },
+                            "detailedInfo": {
+                                "propertyType": {
+                                    "masterType": {
+                                        "GLOBAL": [
+                                            "Single Family"
+                                        ],
+                                        "LOCAL_1": [
+                                            "Residential"
+                                        ],
+                                        "LOCAL_2": [
+                                            "Fee Simple"
+                                        ]
+                                    }
+                                },
+                                "totalParkingSpaces": 2
+                            },
+                            "media": [
+                                {
+                                    "category": 0,
+                                    "thumbnailUrl": "https://d2787ndpv5cwhz.cloudfront.net/df6ca5727069c47649c00bb85e74782fad0604b4/165x165.jpg",
+                                    "originalUrl": "https://d2787ndpv5cwhz.cloudfront.net/d9a36bbbfcdcb680abb9ea73df62534542f7189e_original.jpg",
+                                    "width": 640,
+                                    "height": 480
+                                }
+                            ],
+                            "dealInfo": {
+                                "transactionType": 1,
+                                "courtesyOf": "Listing Courtesy of Express Realty USA LLC, Yasmeen Durrani"
+                            },
+                            "isConsumerSearchable": false,
+                            "isOffMLS": false,
+                            "userListingCompliance": {
+                                "descriptionCompliance": 0,
+                                "listingFooterComplianceImage": "complianceCVRMLS"
+                            },
+                            "externalId": "VASP215148",
+                            "badges": {
+                                "cornerBadges": [
+                                    {
+                                        "badgeType": 2,
+                                        "displayText": "Coming Soon"
+                                    }
+                                ]
+                            },
+                            "databaseSource": {
+                                "externalSourceName": "bright",
+                                "sourceDisplayName": "BRIGHT",
+                                "contributingDatasetList": [
+                                    "bright"
+                                ]
+                            },
+                            "pageLink": "/listing/6723-averett-court-fredericksburg-va-22407/318609716317875425/",
+                            "navigationPageLink": "/listing/6723-averett-court-fredericksburg-va-22407/318609716317875425/",
+                            "canonicalPageLink": "/listing/6723-averett-court-fredericksburg-va-22407/318609716317875425/",
+                            "editable": true
+                        },
+                        "isArchived": false,
+                        "hasUnreadComments": false,
+                        "numComments": 0,
+                        "numCommentsUnread": 0,
+                        "addedBy": {
+                            "_id": "5f15359bc9c8200001a2739b",
+                            "firstName": "Balasaheb",
+                            "lastName": "Dabhade",
+                            "displayName": "Balasaheb Dabhade",
+                            "email": "balasaheb.dabhade@compass.com",
+                            "phone": "",
+                            "profileTypes": [
+                                0,
+                                1
+                            ]
+                        },
+                        "updatedBy": {
+                            "_id": "5f15359bc9c8200001a2739b",
+                            "firstName": "Balasaheb",
+                            "lastName": "Dabhade",
+                            "displayName": "Balasaheb Dabhade",
+                            "email": "balasaheb.dabhade@compass.com",
+                            "phone": "",
+                            "profileTypes": [
+                                0,
+                                1
+                            ]
+                        },
+                        "createdAt": 1595421202298,
+                        "updatedAt": 1595421202298,
+                        "boardId": "5f18309565f0aa00015ae939",
+                        "reviewStage": 0,
+                        "wantToSee": false
+                    }
+                ],
+                "totalListings": 2
+            }
+        }
