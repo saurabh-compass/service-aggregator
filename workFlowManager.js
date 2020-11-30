@@ -3,21 +3,23 @@ var dataQueryHandler = require("./dataQueryHandler")
 function processSingleWorkFlow(workFlowContextMap, currentWorkFlowIndex) {
     var currentQueryIndex = 0;
     var currentWorkFlow = workFlowContextMap[currentWorkFlowIndex];
-    if(currentWorkFlow.totalQueries > 0) {
+    if(currentWorkFlow.context.totalQueries > 0) {
         processQueries(currentWorkFlow, currentQueryIndex, (function(){
-            onWorkflowComplete(workFlowContextMap, res);
+            return function () {
+            onWorkflowComplete(workFlowContextMap);
+            };
         })())
     }
 }
 
-function onWorkflowComplete(workFlowContextMap, res) {
+function onWorkflowComplete(workFlowContextMap) {
     workFlowContextMap.completedWorkFlows++;
     if (workFlowContextMap.completedWorkFlows >= workFlowContextMap.totalWorkFlows) {
         var result = {};
         for(var index=0;index < workFlowContextMap.totalWorkFlows; index++) {
-            result[workFlowContextMap[index].responseKey] = workFlowContextMap[index].contextKeys;
+            result[workFlowContextMap[index].context.responseKey] = workFlowContextMap[index].context.contextKeys;
         }
-        response.json(result);
+        workFlowContextMap.response.json(result);
     }
 }
 
@@ -26,18 +28,23 @@ function onQueryComplete(workFlowContext, currentQueryIndex, workFlowCompleteCal
 }
 
 function processQueries(workFlowContext, currentQueryIndex, workFlowCompleteCallback) {
-    if(currentQueryIndex >= workFlowContext.totalQueries) {
+    if(currentQueryIndex >= workFlowContext.context.totalQueries) {
         workFlowCompleteCallback();
+        return;
     }
     var query = workFlowContext.context.requestQueries[currentQueryIndex];
-    var queryType = requestQueries['queries'][index].type;
+    var queryType = query.type;
     if (queryType == "api") {
         apiQueryHandler.processApiQuery(query, workFlowContext.context, (function(){
-            onQueryComplete(workFlowContext, currentQueryIndex, workFlowCompleteCallback)
+            return function () {
+                onQueryComplete(workFlowContext, currentQueryIndex, workFlowCompleteCallback)
+            }
         })());
     } else if (queryType == "data") {
         dataQueryHandler.processApiQuery(query, workFlowContext.context, (function(){
-            onQueryComplete(workFlowContext, currentQueryIndex, workFlowCompleteCallback)
+            return function () {
+                onQueryComplete(workFlowContext, currentQueryIndex, workFlowCompleteCallback)
+            }
         })());
     } else if(queryType == "contextSelection") {
 
@@ -45,14 +52,9 @@ function processQueries(workFlowContext, currentQueryIndex, workFlowCompleteCall
 }
 
 module.exports.processWorkFlow = function(workFlows, res) {
-    var workFlowContextMap = {completedWorkFlows:0,totalWorkFlows:workFlows.length};
+    var workFlowContextMap = {response: res, completedWorkFlows:0,totalWorkFlows:workFlows.length};
         for (var workFlowIndex = 0; workFlowIndex < workFlows.length; workFlowIndex++) {
             var context = {
-                queriesProcessed: 0,
-                indexToEntityNameToDataMap: {},
-                response: res,
-                indexToWhereMap: {},
-                indexToAliasNameToDataMap: {},
                 totalQueries: workFlows[workFlowIndex]["queries"].length,
                 requestQueries: workFlows[workFlowIndex]["queries"],
                 responseKey: workFlows[workFlowIndex]["responseKey"],

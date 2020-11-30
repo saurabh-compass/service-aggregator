@@ -31,14 +31,12 @@ function resolveEntities(ast, queryContext, queryCompleteCallback) {
     if (ast.from[currentFromIndex].on) {
         onMap = {}
         parseOnClause(ast.from[currentFromIndex].on, onMap);
-        console.log("onMap", onMap)
         for (var tableName in onMap) {
             for (var columnPath in onMap[tableName]) {
                 var collectedData = []
                 collectDataForPath(queryContext.entityNameToDataMap[tableName], columnPath.split("."), 0, collectedData)
                 var createdReqData = {}
                 var joinParams = apiInfo[entityName].joinParams[onMap[tableName][columnPath]]
-                console.log("collectedData:", collectedData);
                 var joinRightPath = joinParams["getParams"] || joinParams["postParams"];
                 createJSONPath(collectedData, joinRightPath.split("."), 0, createdReqData)
                 if (joinParams["getParams"]) {
@@ -84,7 +82,6 @@ function resolveEntities(ast, queryContext, queryCompleteCallback) {
     var requestFunction = (function () {
         var keyName = options.keyName;
         var localContext = queryContext, localAst = ast, localCurrentFromIndex = currentFromIndex, localEntityName = entityName;
-        console.log("options", JSON.stringify(options));
         return function () {
             request(options, function (error, response, body) {
                 var result = (body.constructor == ({}).constructor) ? body : JSON.parse(body);
@@ -166,7 +163,7 @@ function parseOnClause(onAst, onMap) {
 }
 
 module.exports.processApiQuery = function(apiQuery, context, queryCompleteCallback) {
-    var ast = parser.astify(formatQuery(apiQuery));
+    var ast = parser.astify(formatQuery(apiQuery.query));
     var queryContext = {};
     queryContext.entityNameToDataMap = {};
     queryContext.whereMap = {};
@@ -176,5 +173,4 @@ module.exports.processApiQuery = function(apiQuery, context, queryCompleteCallba
     if (ast.where)
         parseWhereClause(ast.where, queryContext.whereMap)
     resolveEntities(ast, queryContext, queryCompleteCallback)
-
 }

@@ -30,8 +30,8 @@ app.post('/aggregator', function (req, res) {
         data += chunk;
     })
     req.on("end", function () {
-        var workFlows = JSON.parse(data);
-        workFlowManager.processWorkFlow(workFlows, res);
+        var workFlowsRequest = JSON.parse(data);
+        workFlowManager.processWorkFlow(workFlowsRequest.workflows, res);
     })
 })
 
